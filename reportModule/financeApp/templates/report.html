@@ -1,0 +1,366 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark" id="navbar-size"> 
+        <a href="#menu-toggle" id="menu-toggle" class="navbar-brand">
+            <span class="navbar-toggler-icon"></span>
+        </a> 
+        <button class="navbar-toggler" id="move-toggle" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation"> 
+            <span class="navbar-toggler-icon"></span> 
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample02">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"> <a class="nav-link" href="#" id="nav-enterprise">SB Enterprise<span class="sr-only">(current)</span></a> </li>
+            </ul>
+            <form class="form-inline my-2 my-md-0"> </form>
+        </div>
+        
+    </nav>
+    <div id="wrapper" class="toggled">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <!-- <li class="sidebar-brand"> <a href="#"> Hermans Enterprise </a> </li> -->
+                <br>
+                <li> <a href="#">Banking</a> </li>
+                <li> <a href="#">Sales</a> </li>
+                <li> <a href="#">Inventory</a> </li>
+                <li> <a href="#">Employees</a> </li>
+                <li> <a href="#" class="active">Reports</a> </li>
+                <li> <a href="#">Taxes</a> </li>
+                <li> <a href="#">Accounting</a> </li>
+            </ul>
+        </div> <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <!-- Make sure to keep all page content within the #page-content-wrapper -->
+        <div id="page-content-wrapper"> 
+            <div class="container-fluid">
+                <h2 style="color: #7719aa;">Reports</h2>
+                
+                <div class="offset"> <!-- offset account for space above -->
+
+                    <div class="fixed-background"> 
+                        <div class="row">
+                            <div class="col-md-8">
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group has-search">
+                                    <span class="fa fa-search form-control-feedback"></span>
+                                    <input type="text" class="form-control" placeholder="Search">
+                                </div>
+                            </div>
+
+                        </div>
+            
+            
+                    </div>
+                    
+                </div> 
+
+                <div class="offset"> <!-- offset account for space above -->
+
+                    <div class="fixed-background"> 
+                        <div class="row">
+                            <div class="col-12">
+                                <nav class="navbar navbar-expand navbar-dark" id="navbar-card"> 
+                                    <ul class="navbar-nav mr-auto" id="ul-reports">
+                                        <li class="nav-item" id="cmr">Operational reports</li>
+                                        <li class="nav-item" id="mngt">Management reports</li>
+                                    </ul>
+                                </nav>
+                                <hr>
+                            </div>
+                        </div>
+            
+                    </div>
+                    
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="table100 ver4 m-b-110" id="operational">
+                            <div class="table100-head">
+                                <table>
+                                    <thead>
+                                        <tr class="row100 head" id="thead">
+                                            <th class="cell100 column1">#</th>
+                                            <th class="cell100 column2" style="margin-left: -20px;">NAME </th>
+                                            <th class="cell100 column3">STAFF</th>
+                                            <th class="cell100 column4">DATE JOINED</th>
+                                            <th class="cell100 column5">PHONE No.</th>
+                                            <th class="cell100 column6">BASIC PAY</th>
+                                            <th class="cell100 column7">BENEFITS</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+        
+                            <div class="table100-body js-pscroll">
+                                <table>
+                                    <tbody>
+                                        {% for result in pays %}
+                                            <tr class="row100 body">
+                                                <td class="cell100 column1">{{ result.Employee.id}}</td>
+                                                <td class="cell100 column2">{{ result.Employee.first_name}} {{ result.Employee.last_name}}</td>
+                                                <td class="cell100 column3">{{ result.Employee.is_staff}}</td>
+                                                <td class="cell100 column4">{{ result.Employee.date_joined}}</td>
+                                                <td class="cell100 column5">{{ result.Employee.phone1}}</td>
+                                                <td class="cell100 column6">{{ result.basic_pay}}</td>
+                                                <td class="cell100 column7">{{ result.benefits}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- ====================================================== -->
+                        
+                        <div class="table100 ver4 m-b-110" id="managerial">
+                            <div class="table100-head">
+                                <table>
+                                    <thead>
+                                        <tr class="row100 head" id="thead">
+                                            <th class="cell100 column1">NAME</th>
+                                            <th class="cell100 column2">CREATED BY </th>
+                                            <th class="cell100 column3">LAST MODIFIED</th>
+                                            <th class="cell100 column4">REPORT METHOD</th>
+                                            <th class="cell100 column5">ACTION</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+        
+                            <div class="table100-body js-pscroll">
+                                <table style="margin-top: -40px;">
+                                    <tbody>
+                                        <tr class="row100 body">
+                                            <td class="cell100 column1" id="name_mng"  data-toggle="modal" data-target="#myModal"><a href="#" style='color: #7719aa;'>Enterprise Overview</a></td>
+                                            <td class="cell100 column2">SB Enterprise</td>
+                                            <td class="cell100 column3"></td>
+                                            <td class="cell100 column4">
+                                                <select class="custom-select" style="width: 80%; margin-left: -56px;">
+                                                    <div style="height: 200px;">
+                                                        <option selected>All Dates</option>
+                                                        <option value="1">Today</option>
+                                                        <option value="2">This Week</option>
+                                                        <option value="3">This Week-to-date</option>
+                                                        <option value="4">This Month</option>
+                                                        <option value="4">This Month-to-Date</option>
+                                                        <option value="4">This Quarter</option>
+                                                        <option value="4">This Quarter-to-date</option>
+                                                        <option value="4">This Year</option>
+                                                        <option value="4">This Year-to-date</option>
+                                                    </div>
+                                                </select>
+                                            </td>
+                                            <td class="cell100 column5">
+                                                <div class="dropdown">
+                                                    <button class="dropbtn">view <i class="fa fa-caret-down" style="padding-left: 3px;"></i></button>
+                                                    <div class="dropdown-content">
+                                                        <a href="#">Edit</a>
+                                                        <a href="#">Send</a>
+                                                        <a href="#">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="row100 body">
+                                            <td class="cell100 column1" id="name_mng"   data-toggle="modal" data-target="#mySales"><a href="#" style='color: #7719aa;'>Sales Performance</a></td>
+                                            <td class="cell100 column2">SB Enterprise</td>
+                                            <td class="cell100 column3"></td>
+                                            <td class="cell100 column4">
+                                                <select class="custom-select" style="width: 80%; margin-left: -56px;">
+                                                    <div style="height: 200px;">
+                                                        <option selected>All Dates</option>
+                                                        <option value="1">Today</option>
+                                                        <option value="2">This Week</option>
+                                                        <option value="3">This Week-to-date</option>
+                                                        <option value="4">This Month</option>
+                                                        <option value="4">This Month-to-Date</option>
+                                                        <option value="4">This Quarter</option>
+                                                        <option value="4">This Quarter-to-date</option>
+                                                        <option value="4">This Year</option>
+                                                        <option value="4">This Year-to-date</option>
+                                                    </div>
+                                                </select>
+                                            </td>
+                                            <td class="cell100 column5">
+                                                <div class="dropdown">
+                                                    <button class="dropbtn">view <i class="fa fa-caret-down" style="padding-left: 3px;"></i></button>
+                                                    <div class="dropdown-content">
+                                                        <a href="#">Edit</a>
+                                                        <a href="#">Send</a>
+                                                        <a href="#">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="row100 body">
+                                            <td class="cell100 column1" id="name_mng"  data-toggle="modal" data-target="#myExpenses"><a href="#" style='color: #7719aa;'>Expenses Performance</a></td>
+                                            <td class="cell100 column2">SB Enterprise</td>
+                                            <td class="cell100 column3"></td>
+                                            <td class="cell100 column4">
+                                                <select class="custom-select" style="width: 80%; margin-left: -56px;">
+                                                    <div style="height: 200px;">
+                                                        <option selected>All Dates</option>
+                                                        <option value="1">Today</option>
+                                                        <option value="2">This Week</option>
+                                                        <option value="3">This Week-to-date</option>
+                                                        <option value="4">This Month</option>
+                                                        <option value="4">This Month-to-Date</option>
+                                                        <option value="4">This Quarter</option>
+                                                        <option value="4">This Quarter-to-date</option>
+                                                        <option value="4">This Year</option>
+                                                        <option value="4">This Year-to-date</option>
+                                                    </div>
+                                                </select>
+                                            </td>
+                                            <td class="cell100 column5">
+                                                    <div class="dropdown">
+                                                        <button class="dropbtn">view <i class="fa fa-caret-down" style="padding-left: 3px;"></i></button>
+                                                        <div class="dropdown-content">
+                                                            <a href="#">Edit</a>
+                                                            <a href="#">Send</a>
+                                                            <a href="#">Delete</a>
+                                                        </div>
+                                                    </div>
+                                            </td>
+                                            
+                                        </tr>
+                                        <br>
+                                        <!-- <div class="text-center">
+                                            <img src="images/construction.png" alt="">
+                                            <br><br>
+                                            <h3>Schema Under Construction!</h3>
+                                        </div> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                
+            </div>
+        </div> <!-- /#page-content-wrapper -->
+    </div> <!-- /#wrapper -->
+
+    
+    <!-- Button to Open the Modal -->
+    
+    <!-- The Modal -->
+    <!-- Sales-->
+    <div class="modal fade" id="mySales">
+        <div class="modal-dialog modal-dialog-centered modal-lg" style="max-width: 90%;">
+        <div class="modal-content">
+        
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title"  style='color: #7719aa;'>Print Preview</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container">           
+                    <table class="table table-hover">
+                        <thead>
+                        <tr  style='color: #7719aa;'>
+                            <th>#</th>
+                            <th>Customer Name</th>
+                            <th>Invoice No</th>
+                            <th>Date</th>
+                            <th>Date Created</th>
+                            <th>Amount</th>
+                            <th>Remarks</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for  sale in sales %}
+                            <tr>
+                                <td>{{ sale.id}} </td>
+                                <td>{{ sale.customer.first_name}} {{ sale.customer.last_name}}</td>
+                                <td>{{ sale.invoice_no}}</td>
+                                <td>{{ sale.date}}</td>
+                                <td>{{ sale.created_at}}</td>
+                                <td>{{ sale.Amount}}</td>
+                                <td>{{ sale.remarks}}</td>
+                                <td><a href="{% url 'print_download' sale.id %}"><button type="button" class="btn btn-default"  style='color: #7719aa;'>Print/Download</button></a></td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    </div>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" style='background: #b04ee4; border: none;'>Close</button>
+            </div>
+            
+        </div>
+        </div>
+    </div>
+    <!-- Expenses-->
+    <div class="modal fade" id="myExpenses">
+        <div class="modal-dialog modal-dialog-centered modal-lg" style="max-width: 90%;">
+        <div class="modal-content">
+        
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title" style='color: #7719aa;'>Print Preview</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container">           
+                    <table class="table table-hover">
+                        <thead>
+                        <tr style='color: #7719aa;'>
+                            <th>#</th>
+                            <th>Transaction Name</th>
+                            <th>Title</th>
+                            <th>Amount</th>
+                            <th>Category</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for expense in expenses %}
+                            <tr>
+                                <td>{{ expense.id}} </td>
+                                <td>{{ expense.Transaction_name}} </td>
+                                <td>{{ expense.title}}</td>
+                                <td>{{ expense.amount}}</td>
+                                <td>{{ expense.category}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    </div>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn btn-success" style='background: #7719aa; border: none;'>Print</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" style='background: #b04ee4; border: none;'>Close</button>
+            </div>
+            
+        </div>
+        </div>
+    </div>
+    
+    </div>
+    <script>
+            $(document).ready(function() {
+                $('.mdb-select').materialSelect();
+                });
+    </script>
+
+{% endblock %}

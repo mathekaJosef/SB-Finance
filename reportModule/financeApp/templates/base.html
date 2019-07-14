@@ -1,0 +1,135 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Finance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'bootstrap-4.3.1-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/report.css' %}">
+    <link rel="stylesheet" href="{% static 'css/template.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+    <script src="{% static 'jquery.js' %}"></script>
+    <script src="{% static 'bootstrap-4.3.1-dist/js/bootstrap.min.js' %}"></script>
+</head>
+<style type="text/css">
+    #cmr:hover{
+        padding-right: 10px;
+        padding-bottom: 3px;
+        border-right: 1px dotted #999; 
+        border-bottom: 2px solid #7719aa;
+        margin-bottom: -13px;
+        transition: .1s ease-in;
+    }
+    #mngt:hover{
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-bottom: 3px;
+        border-right: 1px dotted #999;
+        border-bottom: 2px solid #7719aa;
+        margin-bottom: -13px;
+        transition: .1s ease-in;
+    }
+    
+    .sidebar-nav li a:hover {
+        text-decoration: none;
+        color: #7719aa;
+        background: rgba(190, 190, 190, 0.2);
+        border-left: 3px solid #7719aa;
+    }
+    .sidebar-nav li a.active {
+        text-decoration: none;
+        color: #7719aa;
+        background: rgba(190, 190, 190, 0.2);
+        border-left: 3px solid #7719aa;
+    }
+    #name_mng{
+        color: #7719aa;
+    }
+
+    .dropbtn {
+        color: #7719aa;
+        font-size: 16px;
+        border: none;
+      }
+      
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 130px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 100;
+      }
+      
+      .dropdown-content a {
+        color: #7719aa;
+        padding: 5px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      
+      .dropdown-content a:hover {background-color: #ddd;}
+      
+      .dropdown:hover .dropdown-content {display: block; z-index: 100;}
+</style>
+<body>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{% static 'js/template.js' %}"></script>
+    <script src="{% static 'js/to_pdf.js' %}"></script>
+    <script src="{% static 'bootstrap-4.3.1-dist/js/bootstrap.bundle.min.js' %}"></script> <!-- Menu Toggle Script -->
+    <script type="text/javascript" src="{% static 'js/report.js' %}"></script>
+    <!-- vendor -->
+    <script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+	<script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+			
+		
+	</script>
+    
+<!--===============================================================================================-->
+	<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

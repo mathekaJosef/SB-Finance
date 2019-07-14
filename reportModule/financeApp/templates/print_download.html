@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="invoice">
+
+        <div class="toolbar hidden-print">
+            <div class="text-right">
+                <button id="printInvoice" class="btn btn-info" style='background: #7719aa;'><i class="fa fa-print" ></i> Print</button>
+                <button id="export_pdf" class="btn btn-info" style='background: #9c21de;'><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
+                <button onclick="exportHTML()" id="export_word" class="btn btn-info"  style='background: #ba64e8;'><i class="fa fa-file-word-o"></i> Export as MS word</button>
+            </div>
+            <hr>
+        </div>
+        <div class="invoice overflow-auto">
+            <div style="min-width: 600px">
+                <header>
+                    <div class="row">
+                        <div class="col">
+                            <a target="_blank" href="https://lobianijs.com">
+                                <h3 style='color: #7719aa;'>SB Finance</h3>
+                                </a>
+                        </div>
+                        <div class="col company-details">
+                            <div>123, Fort Jesus, KE</div>
+                            <div>123-80100</div>
+                            <div>sbfinance@finance.com</div>
+                        </div>
+                    </div>
+                </header>
+                <main>
+                    <div class="row contacts">
+                        {% for invoice in invoices %}
+                            <div class="col invoice-to">
+                                <div class="text-gray-light">INVOICE TO:</div>
+                                <h2 class="to">{{ invoice.customer.first_name}} {{ invoice.customer.last_name}}</h2>
+                                <div class="address">{{ invoice.customer.street}}, {{ invoice.customer.city}}, {{ invoice.customer.country}}</div>
+                                <div class="email"><a href="mailto:john@example.com"  style='color: #7719aa;'>john@example.com</a></div>
+                            </div>
+                            <div class="col invoice-details">
+                                <h1 class="invoice-id"  style='color: #9c21de;'>INVOICE {{ invoice.invoice_no}}</h1>
+                                <div class="date">Date of Invoice: {{ invoice.created_at}}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th class="text-left">DESCRIPTION</th>
+                                <th class="text-right">QUANTITY</th>
+                                <th class="text-right">RATE</th>
+                                <th class="text-right">AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for invoice in invoices %}
+                                <tr>
+                                    <td class="no" style='background: #7719aa;'>{{ invoice.id }}</td>
+                                    <td class="text-left">#</td>
+                                    <td class="unit">#</td>
+                                    <td class="qty">#</td>
+                                    <td class="total" style='background: #7719aa;'>{{ invoice.Amount }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            {% for invoice in invoices %}
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td colspan="2">SUBTOTAL</td>
+                                    <td>{{invoice.Amount}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td colspan="2">TAX 25%</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td colspan="2" style='color: #9c21de;'>GRAND TOTAL</td>
+                                    <td style='color: #9c21de;'>{{invoice.Amount}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tfoot>
+                    </table>
+                    {% for invoice in invoices %}
+                        <div class="thanks">{{invoice.remarks}}</div>
+                    {% endfor %}
+                </main>
+                <footer>
+                    SB_finance project.
+                </footer>
+            </div>
+            <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+            <div></div>
+        </div>
+    </div>
+
+    <script>
+        function exportHTML(){
+                var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
+                    "xmlns:w='urn:schemas-microsoft-com:office:word' "+
+                    "xmlns='http://www.w3.org/TR/REC-html40'>"+
+                    "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
+                var footer = "</body></html>";
+                var sourceHTML = header+document.getElementById("invoice").innerHTML+footer;
+                
+                var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+                var fileDownload = document.createElement("a");
+                document.body.appendChild(fileDownload);
+                fileDownload.href = source;
+                fileDownload.download = 'sb_finance.doc';
+                fileDownload.click();
+                document.body.removeChild(fileDownload);
+            }
+        </script>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>form disable</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="bootstrap/js/bootstrap.min.js">
+</head>
+<body>
+	<form action="#" method="post" class="form-disable">
+		<input type="text" name="name" placeholder="enter your name">
+		<input type="submit" value="send">
+	</form>
+    <script type="text/javascript">
+    	$(function(){
+    		$('.form-disable').on('submit',  function(){
+	            console.log('submitted');
+	            return false;
+	    	});
+    	})
+    </script>
+</body>
+</html>
